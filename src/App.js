@@ -24,8 +24,24 @@ class App extends React.Component {
   handleChangeScore = (index, delta) => {
     console.log('index: ' + index, 'delta: ' + delta);
     this.setState(prevState => {
-      prevState.players[index].score += delta
+      prevState.players[index].score += delta;
       return prevState;
+    });
+  }
+  
+  handleAddPlayer = (name) => {
+    console.log(name);
+    this.setState(prevState => {
+      const maxId = prevState.players.reduce((max, player) => {
+        return max > player.id ? max : player.id;
+      }, 0);
+      
+      return {
+        players: [
+          ...prevState.players,
+          {id: maxId + 1, name, score: 0}
+        ]
+      }
     });
   }
 
@@ -44,7 +60,7 @@ class App extends React.Component {
                index={index}
                id={item.id} />)
         }
-        <AddPlayerForm />
+        <AddPlayerForm addPlayer={this.handleAddPlayer} />
       </div>
     );
   }
