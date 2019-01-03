@@ -1,19 +1,21 @@
 import React from "react";
 import Counter from './Counter';
 
-const Player = (props) => {
-  // console.log(props);
-  return (
-    <div className="player">
+class Player extends React.PureComponent {
+  render() {
+    console.log(this.props.name, ' rendered');
+    return (
+      <div className="player">
       <span className="player-name">
-        <button className="remove-player" onClick={() => props.removePlayer(props.id)}>x</button>
+        <button className="remove-player" onClick={() => this.props.removePlayer(this.props.id)}>x</button>
       </span>
-      <span className="player-name">
-        {props.name}
+        <span className="player-name">
+        {this.props.name}
       </span>
-      <Counter score={props.score} index={props.index} changeScore={props.changeScore} />
-    </div>
-  );
+        <Counter score={this.props.score} index={this.props.index} changeScore={this.props.changeScore} />
+      </div>
+    );
+  }
 }
 
 export default Player;
