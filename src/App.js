@@ -44,6 +44,11 @@ class App extends React.Component {
       }
     });
   }
+  
+  getHighScore = () => {
+    const highScore = this.state.players.reduce((maxScore, player) => maxScore > player.score ? maxScore : player.score, 0);
+    return highScore > 0 ? highScore : null;
+  }
 
   render() {
     return (
@@ -58,6 +63,7 @@ class App extends React.Component {
                removePlayer={this.handleRemovePlayer}
                changeScore={this.handleChangeScore}
                index={index}
+               isHighScore={item.score === this.getHighScore()}
                id={item.id} />)
         }
         <AddPlayerForm addPlayer={this.handleAddPlayer} />
