@@ -3,16 +3,9 @@ import './App.css';
 import Header from './components/Header';
 import Player from './components/Player';
 import AddPlayerForm from "./components/AddPlayerForm";
+import {connect} from "react-redux";
 
 class App extends React.Component {
-  state = {
-    players: [
-      {name: 'LDK', score: 0, id: 1},
-      {name: 'HONG', score: 0, id: 2},
-      {name: 'KIM', score: 0, id: 3},
-      {name: 'PARK', score: 0, id: 4},
-    ]
-  };
   handleRemovePlayer = (id) => {
     this.setState(prevState => {
       return {
@@ -46,17 +39,18 @@ class App extends React.Component {
   }
   
   getHighScore = () => {
-    const highScore = this.state.players.reduce((maxScore, player) => maxScore > player.score ? maxScore : player.score, 0);
+    const highScore = this.props.players.reduce((maxScore, player) => maxScore > player.score ? maxScore : player.score, 0);
     return highScore > 0 ? highScore : null;
   }
 
   render() {
+    const {players} = this.props;
     return (
       <div className="scoreboard">
-        <Header players={this.state.players} />
+        <Header players={players} />
         
         {/*Players List*/}
-        { this.state.players.map((item, index) =>
+        { players.map((item, index) =>
           <Player name={item.name}
                score={item.score}
                key={item.id.toString()}
@@ -66,10 +60,16 @@ class App extends React.Component {
                isHighScore={item.score === this.getHighScore()}
                id={item.id} />)
         }
-        <AddPlayerForm addPlayer={this.handleAddPlayer} />
+        <AddPlayerForm />
       </div>
     );
   }
 }
 
-export default App;
+let mapStateToProps = (state) => {
+  return {
+    players: state.playerReducer.players
+  }
+}
+
+export default connect(mapStateToProps)(App);

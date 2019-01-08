@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {addPlayer} from "../redux/actions";
+import {connect} from "react-redux";
 
 class AddPlayerForm extends Component {
   textInput = React.createRef();
@@ -19,4 +21,10 @@ class AddPlayerForm extends Component {
   }
 }
 
-export default AddPlayerForm;
+let mapDispatchToProps = (dispatch) => {
+  return {
+    addPlayer: (name) => dispatch(addPlayer(name))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(AddPlayerForm);
