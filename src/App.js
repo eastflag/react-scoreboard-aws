@@ -22,22 +22,6 @@ class App extends React.Component {
     });
   }
   
-  handleAddPlayer = (name) => {
-    console.log(name);
-    this.setState(prevState => {
-      const maxId = prevState.players.reduce((max, player) => {
-        return max > player.id ? max : player.id;
-      }, 0);
-      
-      return {
-        players: [
-          ...prevState.players,
-          {id: maxId + 1, name, score: 0}
-        ]
-      }
-    });
-  }
-  
   getHighScore = () => {
     const highScore = this.props.players.reduce((maxScore, player) => maxScore > player.score ? maxScore : player.score, 0);
     return highScore > 0 ? highScore : null;
