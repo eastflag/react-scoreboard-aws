@@ -1,5 +1,5 @@
 import {combineReducers, createStore} from "redux";
-import {ADD_PLAYER, UPDATE_TITLE} from "./actionTypes";
+import {ADD_PLAYER, CHANGE_SCORE, UPDATE_TITLE} from "./actionTypes";
 
 let playerId = 4;
 
@@ -31,6 +31,17 @@ const playerReducer = (state = playerInitialState, action) => {
             id: ++playerId
           }
         ]
+      }
+    case CHANGE_SCORE:
+      const players = [...state.players];
+      players.forEach((player, index) => {
+        if (index === action.index) {
+          player.score += action.delta;
+        }
+      })
+      return {
+        ...state,
+        players
       }
     default:
       return state;

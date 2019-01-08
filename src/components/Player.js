@@ -26,7 +26,7 @@ class Player extends React.PureComponent {
           </svg>
           {name}
         </span>
-        <Counter score={score} index={index} changeScore={changeScore} />
+        <Counter score={score} index={index} />
       </div>
     );
   }

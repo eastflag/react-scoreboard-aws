@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import {changeScore} from "../redux/actions";
+import {connect} from "react-redux";
 
 const Counter = ({index, score, changeScore}) => {
   return (
@@ -17,4 +19,10 @@ Counter.propTypes = {
   changeScore: PropTypes.func
 }
 
-export default Counter;
+let mapDispatchToProps = (dispatch) => {
+  return {
+    changeScore: (index, delta) => dispatch(changeScore(index, delta))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Counter);

@@ -14,14 +14,6 @@ class App extends React.Component {
     })
   }
   
-  handleChangeScore = (index, delta) => {
-    console.log('index: ' + index, 'delta: ' + delta);
-    this.setState(prevState => {
-      prevState.players[index].score += delta;
-      return prevState;
-    });
-  }
-  
   getHighScore = () => {
     const highScore = this.props.players.reduce((maxScore, player) => maxScore > player.score ? maxScore : player.score, 0);
     return highScore > 0 ? highScore : null;
@@ -39,7 +31,6 @@ class App extends React.Component {
                score={item.score}
                key={item.id.toString()}
                removePlayer={this.handleRemovePlayer}
-               changeScore={this.handleChangeScore}
                index={index}
                isHighScore={item.score === this.getHighScore()}
                id={item.id} />)
