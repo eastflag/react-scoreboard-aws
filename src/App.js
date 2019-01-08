@@ -6,14 +6,6 @@ import AddPlayerForm from "./components/AddPlayerForm";
 import {connect} from "react-redux";
 
 class App extends React.Component {
-  handleRemovePlayer = (id) => {
-    this.setState(prevState => {
-      return {
-        players: prevState.players.filter(item => item.id !== id)
-      }
-    })
-  }
-  
   getHighScore = () => {
     const highScore = this.props.players.reduce((maxScore, player) => maxScore > player.score ? maxScore : player.score, 0);
     return highScore > 0 ? highScore : null;
@@ -30,7 +22,6 @@ class App extends React.Component {
           <Player name={item.name}
                score={item.score}
                key={item.id.toString()}
-               removePlayer={this.handleRemovePlayer}
                index={index}
                isHighScore={item.score === this.getHighScore()}
                id={item.id} />)
