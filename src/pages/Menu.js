@@ -9,10 +9,10 @@ class Menu extends Component {
 
         <ul className="navbar-nav">
           <li className="nav-item">
-            <NavLink className="nav-link" to="/heroes">heroes</NavLink>
+            <NavLink className="nav-link" to="/scoreboard">Scoreboard</NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link" to="/scoreboard">Scoreboard</NavLink>
+            <NavLink className="nav-link" to="/heroes">heroes</NavLink>
           </li>
         </ul>
       </nav>

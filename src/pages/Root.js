@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Home from "./Home";
-import Scoreboard from "./Scoreboard";
+import Scoreboard from "./scoreboard/Scoreboard";
 import Heroes from "./Heroes";
 import Menu from "./Menu";
 
