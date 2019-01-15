@@ -10,9 +10,11 @@ export class Root extends Component {
       <BrowserRouter>
         <>
           <p>공통메뉴 영역</p>
-          <Route path="/" component={Home}></Route>
-          <Route path="/heroes" component={Heroes}></Route>
-          <Route path="/scoreboard" component={Scoreboard}></Route>
+          <Switch>
+            <Route exact path="/" component={Home}></Route>
+            <Route path="/heroes" component={Heroes}></Route>
+            <Route path="/scoreboard" component={Scoreboard}></Route>
+          </Switch>
         </>
       </BrowserRouter>
     )
