@@ -5,7 +5,7 @@ import AddPlayerForm from "../../components/AddPlayerForm";
 import connect from "react-redux/es/connect/connect";
 import './Scoreboard.css';
 
-class Scoreboard extends React.Component {
+class Scoreboard extends Component {
   getHighScore = () => {
     const highScore = this.props.players.reduce((maxScore, player) => maxScore > player.score ? maxScore : player.score, 0);
     return highScore > 0 ? highScore : null;

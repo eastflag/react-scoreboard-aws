@@ -4,7 +4,6 @@ import {
   DropdownToggle,
   Nav,
   Navbar,
-  NavbarBrand,
   NavbarToggler,
   NavItem,
   UncontrolledDropdown

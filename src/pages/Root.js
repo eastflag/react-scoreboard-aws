@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Home from "./Home";
 import Scoreboard from "./scoreboard/Scoreboard";
-import Heroes from "./Heroes";
+import Heroes from "./heroes/Heroes";
 import Menu from "./Menu";
 
 export class Root extends Component {
