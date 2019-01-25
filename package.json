@@ -15,7 +15,7 @@
     "redux": "^4.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts start --env.PUBLIC_URL=/public",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

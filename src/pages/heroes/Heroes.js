@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import './Heroes.scss';
+import './Heroes.module.scss';
 
 class Heroes extends Component {
   state = {
@@ -25,7 +25,8 @@ class Heroes extends Component {
         {this.state.heroes.map(hero => (
           <li key={hero.hero_id} className="row align-items-center m-0">
             <div className="col-1 py-2">
-              <img src={hero.photo} alt={hero.name} className="img-fluid rounded-circle" />
+              <img src={hero.photo ? hero.photo : process.env.PUBLIC_URL + '/images/baseline-face-24px.svg'} alt={hero.name}
+                   className="img-fluid rounded-circle" style={{width: '100%'}} />
             </div>
             <span className="col">{hero.name}</span>
           </li>

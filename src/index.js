@@ -7,6 +7,8 @@ import {Provider} from "react-redux";
 import {store} from "./redux/store";
 import {Root} from "./pages/Root";
 
+console.log('public url: ', process.env);
+
 ReactDOM.render(
   <Provider store={store}>
     <Root />
