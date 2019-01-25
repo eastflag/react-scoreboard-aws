@@ -11,11 +11,13 @@ export class Root extends Component {
       <BrowserRouter>
         <>
           <Menu/>
-          <Switch>
-            <Route exact path="/" component={Home}></Route>
-            <Route path="/heroes" component={Heroes}></Route>
-            <Route path="/scoreboard" component={Scoreboard}></Route>
-          </Switch>
+          <div className="container">
+            <Switch>
+              <Route exact path="/" component={Home}></Route>
+              <Route path="/heroes" component={Heroes}></Route>
+              <Route path="/scoreboard" component={Scoreboard}></Route>
+            </Switch>
+          </div>
         </>
       </BrowserRouter>
     )
