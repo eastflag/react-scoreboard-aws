@@ -11,7 +11,7 @@ export class Root extends Component {
       <BrowserRouter>
         <>
           <Menu/>
-          <div className="container">
+          <div className="container" style={{backgroundColor: '#ffffff'}}>
             <Switch>
               <Route exact path="/" component={Home}></Route>
               <Route path="/heroes" component={Heroes}></Route>
