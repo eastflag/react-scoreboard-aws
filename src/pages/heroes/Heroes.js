@@ -3,6 +3,8 @@ import axios from 'axios';
 import './Heroes.module.scss';
 import Pagination from 'rc-pagination';
 import 'rc-pagination/dist/rc-pagination.css';
+import {Route, Switch} from "react-router-dom";
+import Hero from "../hero/Hero";
 
 class Heroes extends Component {
   state = {
@@ -29,6 +31,10 @@ class Heroes extends Component {
   render() {
     return (
       <>
+        <Switch>
+          <Route path="/heroes/hero/:hero_id" component={Hero}></Route>
+        </Switch>
+        
         <div className="card-columns">
           {this.state.heroes.map(hero => (
             <div className="card" key={hero.hero_id}>

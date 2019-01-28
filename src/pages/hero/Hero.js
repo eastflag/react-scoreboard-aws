@@ -53,6 +53,7 @@ class Hero extends Component {
               this.state.hero.photo ? <img src={this.state.hero.photo} alt={this.state.hero.name}></img> : ''
             }
           </div>
+          <hr className="my-5" />
         </div>
         :
         ''
