@@ -42,9 +42,9 @@ class Heroes extends Component {
             </div>
           ))}
         </div>
-  
+      
         <Pagination total={this.state.totalCount} current={this.state.currentPage} pageSize={this.state.pageSize}
-          onChange={this.onChange}/>
+                    onChange={this.onChange} className="d-flex justify-content-center" />
       </>
     )
   }
