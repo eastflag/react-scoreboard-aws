@@ -37,7 +37,7 @@ class Heroes extends Component {
         
         <div className="card-columns">
           {this.state.heroes.map(hero => (
-            <div className="card" key={hero.hero_id}>
+            <div className="card" key={hero.hero_id} onClick={(e) => this.handleClick(e, hero.hero_id)} style={{cursor: 'pointer'}}>
               <img src={hero.photo ? hero.photo : process.env.PUBLIC_URL + '/images/baseline-face-24px.svg'}
                    style={{width: '100%'}} alt={hero.name}></img>
               <div className="card-body">
@@ -59,6 +59,12 @@ class Heroes extends Component {
     this.setState({currentPage: page}, () => {
       this.getHeroes();
     });
+  }
+  
+  handleClick = (event, hero_id) => {
+    console.log(event, hero_id);
+    event.preventDefault();
+    this.props.history.push(`/heroes/hero/${hero_id}`);
   }
 }
 

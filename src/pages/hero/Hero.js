@@ -16,6 +16,15 @@ class Hero extends Component {
     this.getHero(this.props.match.params['hero_id']);
   }
   
+  componentWillReceiveProps(newProps) {
+    console.log('componentWillReceiveProps', newProps);
+    this.getHero(newProps.match.params['hero_id']);
+  }
+  
+/*  componentDidUpdate() {
+    console.log('componentDidUpdate');
+  }*/
+  
   getHero = async (hero_id) => {
     let response = await axios.get(`http://eastflag.co.kr:8080/api/hero/${hero_id}`);
     console.log(response);
