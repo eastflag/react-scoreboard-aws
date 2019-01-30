@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import styles from '../pages/scoreboard/Scoreboard.module.css';
+
 const Stats = ({players}) => {
   let totalPlayers = players.length;
   let totalScore = players.reduce((total, player) => total + player.score, 0);
   
   return (
-    <table className="stats">
+    <table className={styles.stats}>
       <tbody>
       <tr>
         <td>Players:</td>

@@ -3,7 +3,7 @@ import Header from "../../components/Header";
 import Player from "../../components/Player";
 import AddPlayerForm from "../../components/AddPlayerForm";
 import connect from "react-redux/es/connect/connect";
-import './Scoreboard.css';
+import styles from './Scoreboard.module.css';
 
 class Scoreboard extends Component {
   getHighScore = () => {
@@ -14,7 +14,7 @@ class Scoreboard extends Component {
   render() {
     const {players} = this.props;
     return (
-      <div className="scoreboard">
+      <div className={styles.scoreboard}>
         <Header players={players} />
         
         {/*Players List*/}

@@ -1,12 +1,6 @@
 /* ELEMENT STYLES -------------------- */
 
-body {
-  background: #e8e7e7;
-  font-family: arial;
-  text-transform: uppercase;
-}
-
-header {
+.header {
   color: #FFF;
   padding: 5px 10px;
   text-align: center;
@@ -16,7 +10,7 @@ header {
   border-bottom: solid 2px #D4CAFF;
 }
 
-header h1 {
+.header .h1 {
   flex-grow: 1;
   font-size: 1.5em;
   letter-spacing: 2px;
@@ -25,12 +19,12 @@ header h1 {
 
 /* FORMS */
 
-form {
+.form {
   display: flex;
   background-color: #8063FA;
 }
 
-input[type=text] {
+.input[type=text] {
   flex-grow: 1;
   border-width: 0 0 1px 0;
   margin: 15px 10px 15px 15px;
@@ -45,16 +39,16 @@ input[type=text] {
   outline: none;
 }
 
-input[type=text]::-webkit-input-placeholder{
+.input[type=text]::-webkit-input-placeholder{
   color: #C7BCF8;
   letter-spacing: 2px;
 }
 
-input[type=text]:focus{
+.input[type=text]:focus{
   background-color: rgba(0, 0, 0, 0.2);
 }
 
-input[type=submit] {
+.input[type=submit] {
   display: block;
   font-size: .6em;
   margin: 15px 15px 15px 0;
@@ -70,8 +64,8 @@ input[type=submit] {
   cursor: pointer;
 }
 
-button,
-input[type=submit] {
+.button,
+.input[type=submit] {
   outline: none;
   transition: background-color 0.2s ease,
   color 0.2s ease;
@@ -79,7 +73,7 @@ input[type=submit] {
 
 /* ICONS */
 
-svg {
+.svg {
   width: 28px;
   height: 19px;
   margin-right: 5px;
@@ -111,6 +105,7 @@ svg {
   display: flex;
   font-size: 1.2em;
   border-bottom: solid 2px #EEEEEE;
+  border-left: solid 2px #EEEEEE;
   letter-spacing: 2px;
 }
 
@@ -147,7 +142,7 @@ svg {
 
 .stats,
 .stopwatch {
-  width: 170px;
+  width: 190px;
 }
 
 .stats {
