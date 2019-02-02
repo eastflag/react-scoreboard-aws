@@ -61,7 +61,24 @@ export class Register extends Component {
     
     axios.post('http://eastflag.co.kr:8080/api/hero', sendForm)
       .then(response => {
-        console.log(response.data)
+        console.log(response.data);
+        // form 초기화
+        this.setState({
+            name: '',
+            email: '',
+            sex: {
+                male: false,
+                female: false
+            },
+            country: '',
+            address: '',
+            power: {
+                flying: false,
+                penetration: false,
+                hacking: false,
+                strength: false
+            }
+        });
       });
   }
   
