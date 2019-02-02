@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 
 export class Register extends Component {
   state = {
@@ -37,12 +38,39 @@ export class Register extends Component {
     this.setState({power});
   }
   
+  submit = (e) => {
+    e.preventDefault();
+    
+    const sendForm = {...this.state};
+    // sex => string 으로 변환
+    for (let key in this.state.sex) {
+      if (this.state.sex[key]) {
+        Object.assign(sendForm, {sex: key})
+      }
+    }
+    // power => 콤마로 구분된 스트링
+    const power = [];
+    for (let key in this.state.power) {
+      if (this.state.power[key]) {
+        power.push(key);
+      }
+    }
+    Object.assign(sendForm, {power: power.toString()});
+    
+    console.log(sendForm);
+    
+    axios.post('http://eastflag.co.kr:8080/api/hero', sendForm)
+      .then(response => {
+        console.log(response.data)
+      });
+  }
+  
   render() {
     return (
       <>
         <h3>Hero Registration</h3>
         
-        <form>
+        <form onSubmit={this.submit}>
           <div className="form-group mt-1">
             <label htmlFor="name">Name</label>
             <input type="text" className="form-control" placeholder="Enter Name" id="name"
