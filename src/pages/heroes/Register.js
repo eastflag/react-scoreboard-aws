@@ -42,13 +42,13 @@ export class Register extends Component {
     e.preventDefault();
     
     const sendForm = {...this.state};
-    // sex => string 으로 변환
+    // sex: 객체 => male or female 의 string 으로 변환
     for (let key in this.state.sex) {
       if (this.state.sex[key]) {
         Object.assign(sendForm, {sex: key})
       }
     }
-    // power => 콤마로 구분된 스트링
+    // power: 객체 => 각각이 콤마로 구분된 스트링으로 변환
     const power = [];
     for (let key in this.state.power) {
       if (this.state.power[key]) {
@@ -91,13 +91,13 @@ export class Register extends Component {
           <div className="form-group mt-1">
             <label htmlFor="name">Name</label>
             <input type="text" className="form-control" placeholder="Enter Name" id="name"
-                   value={this.state.name} onChange={(e) => this.handleText(e, 'name')} />
+                   value={this.state.name} onChange={(e) => this.handleText(e, 'name')} required minLength="3" maxLength="10" />
           </div>
           
           <div className="form-group mt-1">
             <label htmlFor="email">Email Address</label>
             <input type="email" className="form-control" placeholder="Enter Email" id="email"
-                   value={this.state.email} onChange={(e) => this.handleText(e, 'email')} />
+                   value={this.state.email} onChange={(e) => this.handleText(e, 'email')} required />
           </div>
           
           <div className="d-flex flex-column mt-1">
@@ -105,12 +105,12 @@ export class Register extends Component {
             <div>
               <div className="form-check form-check-inline">
                 <input className="form-check-input" type="radio" name="sex" value="male" id="male"
-                       checked={this.state.sex.male} onChange={this.handleSex}/>
+                       checked={this.state.sex.male} onChange={this.handleSex} required />
                 <label className="form-check-label" htmlFor="male">남자</label>
               </div>
               <div className="form-check form-check-inline">
                 <input className="form-check-input" type="radio" name="sex" value="female" id="female"
-                       checked={this.state.sex.female} onChange={this.handleSex} />
+                       checked={this.state.sex.female} onChange={this.handleSex} required />
                 <label className="form-check-label" htmlFor="female">여자</label>
               </div>
             </div>
@@ -118,7 +118,8 @@ export class Register extends Component {
   
           <div className="form-group mt-1">
             <label htmlFor="country">country</label>
-            <select className="form-control" id="country" value={this.state.country} onChange={(e)=>this.handleText(e, 'country')}>
+            <select className="form-control" id="country" value={this.state.country}
+                    onChange={(e)=>this.handleText(e, 'country')} required>
               <option value=""></option>
               <option value="Japan">Japan</option>
               <option value="American">American</option>
