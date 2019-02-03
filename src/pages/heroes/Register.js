@@ -78,7 +78,8 @@ export class Register extends Component {
                 penetration: false,
                 hacking: false,
                 strength: false
-            }
+            },
+            photo: ''
         });
       });
   }
