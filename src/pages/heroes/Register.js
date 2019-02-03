@@ -16,7 +16,8 @@ export class Register extends Component {
       penetration: false,
       hacking: false,
       strength: false
-    }
+    },
+    photo: ''
   }
   
   handleText = (e, key) => {
@@ -80,6 +81,17 @@ export class Register extends Component {
             }
         });
       });
+  }
+
+  handleUpload = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('file', e.target.files[0], e.target.files[0].name);
+    axios.post('http://eastflag.co.kr:8080/api/file', formData)
+    .then(response => {
+      console.log(response.data);
+      this.setState({photo: process.env.REACT_APP_IMAGE_HOST + response.data.value});
+    });
   }
   
   render() {
@@ -157,6 +169,17 @@ export class Register extends Component {
                 <label className="form-check-label" htmlFor="strength">strength</label>
               </div>
             </div>
+          </div>
+
+          <div className="d-flex flex-column mt-3 align-items-start">
+            <div>사진등록</div>
+            <div className="custom-file">
+              <input type="file" className="custom-file-input" id="customFile" accept="image/*" onChange={this.handleUpload} />
+              <label className="custom-file-label" htmlFor="customFile">Choose file</label>
+            </div>
+            {
+              this.state.photo ? <img src={this.state.photo} alt={this.state.name} /> : ''
+            }
           </div>
         
           <div className="m-3 d-flex justify-content-center">

@@ -7,7 +7,7 @@ import {Provider} from "react-redux";
 import {store} from "./redux/store";
 import {Root} from "./pages/Root";
 
-console.log('public url: ', process.env);
+console.log('process.env: ', process.env, process.env.REACT_APP_IMAGE_HOST);
 
 ReactDOM.render(
   <Provider store={store}>
