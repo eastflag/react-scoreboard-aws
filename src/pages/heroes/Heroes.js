@@ -4,7 +4,7 @@ import './Heroes.module.scss';
 import Pagination from 'rc-pagination';
 import 'rc-pagination/dist/rc-pagination.css';
 import {Route, Switch} from "react-router-dom";
-import Hero from "../hero/Hero";
+import {Hero} from "../hero/Hero";
 
 class Heroes extends Component {
   state = {
@@ -19,8 +19,7 @@ class Heroes extends Component {
   }
   
   getHeroes = async () => {
-    let response = await axios.get(`http://eastflag.co.kr:8080/api/paged_heroes?start_index=
-      ${this.state.pageSize * (this.state.currentPage - 1)}&page_size=${this.state.pageSize}`);
+    let response = await axios.get(`http://eastflag.co.kr:8080/api/paged_heroes?start_index=${this.state.pageSize * (this.state.currentPage - 1)}&page_size=${this.state.pageSize}`);
     console.log(response);
     this.setState({
       heroes: response.data.data,
