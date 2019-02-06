@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Edit} from "./Edit";
 import {View} from "./View";
+import axios from "axios";
 
 export class Hero extends Component {
   state = {
@@ -13,6 +14,16 @@ export class Hero extends Component {
     }));
   }
 
+  handleDelete = (e, hero_id) => {
+    if (window.confirm('삭제하시겠습니까?')) {
+      axios.delete(`http://eastflag.co.kr:8080/api/hero?hero_id=${hero_id}`)
+          .then(response => {
+            console.log(response.data);
+            this.props.history.push('/heroes/hero'); // this.props.router.push('/heroes/hero'); 3.0.0+
+          });
+    }
+  }
+
   render() {
     return (
       <>
@@ -22,7 +33,7 @@ export class Hero extends Component {
             { this.state.is_edit ? <button className="btn btn-info" onClick={this.handleEditMode}>취소</button> :
                 <button className="btn btn-success" onClick={this.handleEditMode}>수정</button>
             }
-            <button className="btn btn-danger ml-3">삭제</button>
+            <button className="btn btn-danger ml-3" onClick={(e) => this.handleDelete(e, this.props.match.params['hero_id'])}>삭제</button>
           </div>
         </div>
         {
