@@ -4,7 +4,9 @@ import './Heroes.module.scss';
 import Pagination from 'rc-pagination';
 import 'rc-pagination/dist/rc-pagination.css';
 import {Route, Switch} from "react-router-dom";
-import {Hero} from "../hero/Hero";
+import Hero from "../hero/Hero";
+import {updateTitle} from "../../redux/actions";
+import connect from "react-redux/es/connect/connect";
 
 class Heroes extends Component {
   state = {
@@ -15,7 +17,12 @@ class Heroes extends Component {
   }
   
   componentDidMount() {
-  this.getHeroes();
+    this.getHeroes();
+  }
+
+  componentWillReceiveProps(newProps) {
+    console.log('componentWillReceiveProps:', newProps);
+    this.getHeroes();
   }
   
   getHeroes = async () => {
@@ -67,4 +74,10 @@ class Heroes extends Component {
   }
 }
 
-export default Heroes;
+let mapStateToProps = (state) => {
+  return {
+    refresh_count: state.heroReducer.refresh_count
+  }
+}
+
+export default connect(mapStateToProps, null)(Heroes);

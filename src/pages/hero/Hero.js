@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 import {Edit} from "./Edit";
 import {View} from "./View";
 import axios from "axios";
+import connect from "react-redux/es/connect/connect";
+import {refreshHero, updateTitle} from "../../redux/actions";
 
-export class Hero extends Component {
+class Hero extends Component {
   state = {
     is_edit: false
   }
@@ -20,6 +22,9 @@ export class Hero extends Component {
           .then(response => {
             console.log(response.data);
             this.props.history.push('/heroes/hero'); // this.props.router.push('/heroes/hero'); 3.0.0+
+
+            // publish to parent
+            this.props.refreshHero();
           });
     }
   }
@@ -43,3 +48,9 @@ export class Hero extends Component {
     );
   }
 }
+
+let mapDispatchToProps = (dispatch) => ({
+  refreshHero: () => dispatch(refreshHero())
+})
+
+export default connect(null, mapDispatchToProps)(Hero);
