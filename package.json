@@ -1,4 +1,5 @@
 {
+  "homepage": "https://eastflag.github.io/react-scoreboard/",
   "name": "scoreboard",
   "version": "0.1.0",
   "private": true,
@@ -17,6 +18,8 @@
     "redux": "^4.0.1"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start --env.PUBLIC_URL=/public",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -32,6 +35,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "gh-pages": "^2.0.1",
     "node-sass": "^4.11.0"
   }
 }
