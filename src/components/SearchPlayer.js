@@ -9,7 +9,7 @@ class SearchPlayer extends Component {
   
   render() {
     return (
-      <div>
+      <div style={{padding: '1rem', borderLeft: '1px solid #dddddd', borderRight: '1px solid #dddddd'}}>
         <label>
           <input type="checkbox" checked={this.props.isSorted} onChange={this.handleChange}></input>
           show good player and bad player
