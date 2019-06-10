@@ -1,4 +1,4 @@
-import {ADD_PLAYER, CHANGE_SCORE, REMOVE_PLAYER, UPDATE_TITLE} from "../actionTypes";
+import {ADD_PLAYER, CHANGE_SCORE, REMOVE_PLAYER, SET_ISSORTED, UPDATE_TITLE} from "../actionTypes";
 
 let playerId = 4;
 
@@ -9,7 +9,8 @@ const playerInitialState = {
     {name: 'HONG', score: 0, id: 2},
     {name: 'KIM', score: 0, id: 3},
     {name: 'PARK', score: 0, id: 4},
-  ]
+  ],
+  isSorted: false
 }
 
 export const playerReducer = (state = playerInitialState, action) => {
@@ -50,6 +51,11 @@ export const playerReducer = (state = playerInitialState, action) => {
       return {
         ...state,
         players
+      }
+    case SET_ISSORTED:
+      state.isSorted = action.isSorted;
+      return {
+        ...state,
       }
     default:
       return state;

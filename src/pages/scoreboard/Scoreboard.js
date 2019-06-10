@@ -1,31 +1,33 @@
 import React, {Component} from 'react';
 import Header from "../../components/Header";
-import Player from "../../components/Player";
 import AddPlayerForm from "../../components/AddPlayerForm";
 import connect from "react-redux/es/connect/connect";
 import styles from './Scoreboard.module.css';
+import {PlayerList} from "../../components/PlayerList";
+import SearchPlayer from "../../components/SearchPlayer";
 
 class Scoreboard extends Component {
-  getHighScore = () => {
-    const highScore = this.props.players.reduce((maxScore, player) => maxScore > player.score ? maxScore : player.score, 0);
-    return highScore > 0 ? highScore : null;
-  }
   
   render() {
     const {players} = this.props;
+    
+    const goodPlayers = players.filter(item => item.score >= 0);
+    const badPlayers = players.filter(item => item.score < 0);
+    
     return (
       <div className={styles.scoreboard}>
         <Header players={players} />
         
+        <SearchPlayer></SearchPlayer>
+        
         {/*Players List*/}
-        { players.map((item, index) =>
-          <Player name={item.name}
-                  score={item.score}
-                  key={item.id.toString()}
-                  index={index}
-                  isHighScore={item.score === this.getHighScore()}
-                  id={item.id} />)
+        {
+          this.props.isSorted ? [
+              <PlayerList playerState='Good Players' players={goodPlayers} />,
+              <PlayerList playerState='Bad Players' players={badPlayers} />
+            ] : <PlayerList playerState='All Players' players={players} />
         }
+        
         <AddPlayerForm />
       </div>
     );
@@ -34,7 +36,8 @@ class Scoreboard extends Component {
 
 let mapStateToProps = (state) => {
   return {
-    players: state.playerReducer.players
+    players: state.playerReducer.players,
+    isSorted: state.playerReducer.isSorted
   }
 }
 
