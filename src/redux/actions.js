@@ -14,10 +14,10 @@ export const addPlayer = (name) => {
   }
 }
 
-export const changeScore = (index, delta) => {
+export const changeScore = (id, delta) => {
   return {
     type: CHANGE_SCORE,
-    index,
+    id,
     delta
   }
 }

@@ -29,7 +29,7 @@ class Player extends React.PureComponent {
           {this.props.children}
           {name}
         </span>
-        <Counter score={score} index={index} />
+        <Counter score={score} id={id} />
       </div>
     );
   }

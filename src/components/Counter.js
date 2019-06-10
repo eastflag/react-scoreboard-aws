@@ -6,12 +6,12 @@ import classNames from 'classnames';
 
 import styles from '../pages/scoreboard/Scoreboard.module.css';
 
-const Counter = ({index, score, changeScore}) => {
+const Counter = ({id, score, changeScore}) => {
   return (
     <div className={styles.counter}>
-      <button className={classNames(styles["counter-action"], styles.decrement)} onClick={() => changeScore(index, -1)}> - </button>
+      <button className={classNames(styles["counter-action"], styles.decrement)} onClick={() => changeScore(id, -1)}> - </button>
       <span className={styles["counter-score"]}>{score}</span>
-      <button className={classNames(styles["counter-action"], styles.increment)} onClick={() => changeScore(index, 1)}> + </button>
+      <button className={classNames(styles["counter-action"], styles.increment)} onClick={() => changeScore(id, 1)}> + </button>
     </div>
   )
 }
@@ -24,7 +24,7 @@ Counter.propTypes = {
 
 let mapDispatchToProps = (dispatch) => {
   return {
-    changeScore: (index, delta) => dispatch(changeScore(index, delta))
+    changeScore: (id, delta) => dispatch(changeScore(id, delta))
   }
 }
 
