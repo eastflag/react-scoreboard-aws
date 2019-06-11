@@ -1,4 +1,12 @@
-import {ADD_PLAYER, CHANGE_SCORE, REFRESH_HERO, REMOVE_PLAYER, SET_ISSORTED, UPDATE_TITLE} from "./actionTypes";
+import {
+  ADD_PLAYER,
+  CHANGE_SCORE,
+  REFRESH_HERO,
+  REMOVE_PLAYER,
+  SEARCH_NAME,
+  SET_ISSORTED,
+  UPDATE_TITLE
+} from "./actionTypes";
 
 export const updateTitle = (title) => {
   return {
@@ -39,5 +47,12 @@ export const setIsSorted = (isSorted) => {
   return {
     type: SET_ISSORTED,
     isSorted
+  }
+}
+
+export const searchName = (name) => {
+  return {
+    type: SEARCH_NAME,
+    name
   }
 }
