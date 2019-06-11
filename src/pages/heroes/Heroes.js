@@ -41,15 +41,17 @@ class Heroes extends Component {
           <Route path="/heroes/hero/:hero_id" component={Hero}></Route>
         </Switch>
         
-        <div className="card-columns">
+        <div className="row">
           {this.state.heroes.map(hero => (
-            <div className="card" key={hero.hero_id} onClick={(e) => this.handleClick(e, hero.hero_id)} style={{cursor: 'pointer'}}>
-              <img src={hero.photo ? hero.photo : process.env.PUBLIC_URL + '/images/baseline-face-24px.svg'}
-                   style={{width: '100%'}} alt={hero.name}></img>
-              <div className="card-body">
-                <h5 className="card-title">{hero.name}</h5>
-                <p className="card-text">email: {hero.email}</p>
-                <p className="card-text">sex: {hero.sex}</p>
+            <div className="col-6 col-sm-4 col-md-3 col-lg-2 p-1 p-sm-2 p-md-3">
+              <div className="card" key={hero.hero_id} onClick={(e) => this.handleClick(e, hero.hero_id)} style={{cursor: 'pointer'}}>
+                <img src={hero.photo ? hero.photo : process.env.PUBLIC_URL + '/images/baseline-face-24px.svg'}
+                     style={{width: '100%'}} alt={hero.name}></img>
+                <div className="card-body">
+                  <h5 className="card-title">{hero.name}</h5>
+                  <p className="card-text">email: {hero.email}</p>
+                  <p className="card-text">sex: {hero.sex}</p>
+                </div>
               </div>
             </div>
           ))}
