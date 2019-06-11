@@ -1,6 +1,8 @@
 import React from 'react';
 import {CustomPlayer} from "./CustomPlayer";
 
+import styles from '../pages/scoreboard/Scoreboard.module.css'
+
 export class PlayerList extends React.Component {
   getHighScore() {
     const highScore = this.props.players.reduce((maxScore, player) => maxScore > player.score ? maxScore : player.score, 0);
@@ -8,9 +10,18 @@ export class PlayerList extends React.Component {
   }
   
   render() {
+    let titleClass = styles['all-title'];
+    if (this.props.playerState.indexOf('All') >= 0) {
+      titleClass = styles['all-title'];
+    } else if (this.props.playerState.indexOf('Good') >= 0) {
+      titleClass = styles['good-title'];
+    } else if (this.props.playerState.indexOf('Bad') >= 0) {
+      titleClass = styles['bad-title'];
+    }
+    
     return (
       <>
-        <p style={{border: '1px solid #dddddd', margin: 0, padding: '1rem'}}>{this.props.playerState}</p>
+        <p className={titleClass}>{this.props.playerState}</p>
       
         {/*Players List*/}
         {

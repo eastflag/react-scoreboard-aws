@@ -95,7 +95,7 @@
 .scoreboard {
   background: #fff;
   width: 700px;
-  margin: 70px auto;
+  margin: 1rem auto;
   box-shadow: 0 2px 0 rgb(133, 104, 250);
   border-radius: 6px;
   overflow: hidden;
@@ -235,4 +235,32 @@ input[type=submit]:hover {
   font-family: monospace;
   font-size: 2em;
   line-height: 2em;
+}
+
+.search-box {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 1rem;
+  background: #2db7f5;
+}
+
+.all-title {
+  background: #999999;
+  padding: 1rem;
+  color: white;
+  margin: 0;
+}
+
+.good-title {
+  background: green;
+  padding: 1rem;
+  color: white;
+  margin: 0;
+}
+
+.bad-title {
+  background: red;
+  padding: 1rem;
+  color: white;
+  margin: 0;
 }
