@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import axios from 'axios';
+import api from '../../utils/api';
 
 export class Register extends Component {
   state = {
@@ -60,7 +60,7 @@ export class Register extends Component {
     
     console.log(sendForm);
     
-    axios.post('http://eastflag.co.kr:8080/api/hero', sendForm)
+    api.post('/api/admin/hero', sendForm)
       .then(response => {
         console.log(response.data);
         // form 초기화
@@ -87,8 +87,8 @@ export class Register extends Component {
   handleUpload = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('file', e.target.files[0], e.target.files[0].name);
-    axios.post('http://eastflag.co.kr:8080/api/file', formData)
+    formData.append('photo', e.target.files[0], e.target.files[0].name);
+    api.post('/api/admin/photo', formData)
     .then(response => {
       console.log(response.data);
       this.setState({photo: process.env.REACT_APP_IMAGE_HOST + response.data.value});

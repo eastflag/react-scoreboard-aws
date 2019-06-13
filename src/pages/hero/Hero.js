@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Edit} from "./Edit";
 import {View} from "./View";
-import axios from "axios";
+import api from '../../utils/api';
 import connect from "react-redux/es/connect/connect";
 import {refreshHero, updateTitle} from "../../redux/actions";
 
@@ -18,7 +18,7 @@ class Hero extends Component {
 
   handleDelete = (e, hero_id) => {
     if (window.confirm('삭제하시겠습니까?')) {
-      axios.delete(`http://eastflag.co.kr:8080/api/hero?hero_id=${hero_id}`)
+      api.delete(`/api/admin/hero?id=${hero_id}`)
           .then(response => {
             console.log(response.data);
             this.props.history.push('/heroes/hero'); // this.props.router.push('/heroes/hero'); 3.0.0+
