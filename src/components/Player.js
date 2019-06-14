@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Counter from './Counter';
 import {removePlayer} from "../redux/actions";
 import {connect} from "react-redux";
-import classNames from 'classnames';
 
 import styles from '../pages/scoreboard/Scoreboard.module.css';
 
@@ -20,7 +19,7 @@ class Player extends React.PureComponent {
   
   render() {
     console.log(this.props.name, ' rendered');
-    const {id, name, score, index, isHighScore, removePlayer} = this.props;
+    const {id, name, score, removePlayer} = this.props;
 
     return (
       <div className={styles.player}>

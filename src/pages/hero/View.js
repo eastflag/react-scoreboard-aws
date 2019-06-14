@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import axios from "axios";
+import api from "../../utils/api";
 
 export class View extends Component {
   constructor(props) {
@@ -9,28 +9,35 @@ export class View extends Component {
       hero: null
     }
     
-    console.log(this.props); // match.params: {hero_id: "1"}
+    console.log(this.props); // match.params: {id: "1"}
   }
 
   componentDidMount() {
     console.log(this.props);
-    this.getHero(this.props.hero_id);
+    this.getHero(this.props.id);
   }
 
   componentWillReceiveProps(newProps) {
     console.log('componentWillReceiveProps', newProps);
-    this.getHero(newProps['hero_id']);
+    this.getHero(newProps['id']);
   }
 
 /*  componentDidUpdate() {
     console.log('componentDidUpdate');
   }*/
 
-  getHero = async (hero_id) => {
-    let response = await axios.get(`http://eastflag.co.kr:8080/api/hero/${hero_id}`);
+  getHero = async (id) => {
+    let response = await api.get(`/api/user/hero/${id}`);
     console.log(response);
+    
+    const hero = response.data;
+    
+    const powers = hero.powers.map(item => item.name);
+    hero.powers = powers;
+    
+    console.log(hero);
 
-    this.setState({hero: response.data});
+    this.setState({hero});
   }
   
   render() {
@@ -55,7 +62,7 @@ export class View extends Component {
           </div>
           <div className="form-group mt-1">
             <label htmlFor="power">Power:</label>
-            <p className="form-control form-control-sm" id="power">{this.state.hero.power}</p>
+            <p className="form-control form-control-sm" id="power">{this.state.hero.powers.toString()}</p>
           </div>
           <div className="form-group mt-1">
             <label htmlFor="power">Photo:</label>

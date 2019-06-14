@@ -3,7 +3,7 @@ import {Edit} from "./Edit";
 import {View} from "./View";
 import api from '../../utils/api';
 import connect from "react-redux/es/connect/connect";
-import {refreshHero, updateTitle} from "../../redux/actions";
+import {refreshHero} from "../../redux/actions";
 
 class Hero extends Component {
   state = {
@@ -16,9 +16,9 @@ class Hero extends Component {
     }));
   }
 
-  handleDelete = (e, hero_id) => {
+  handleDelete = (e, id) => {
     if (window.confirm('삭제하시겠습니까?')) {
-      api.delete(`/api/admin/hero?id=${hero_id}`)
+      api.delete(`/api/admin/hero?id=${id}`)
           .then(response => {
             console.log(response.data);
             this.props.history.push('/heroes/hero'); // this.props.router.push('/heroes/hero'); 3.0.0+
@@ -38,11 +38,11 @@ class Hero extends Component {
             { this.state.is_edit ? <button className="btn btn-info" onClick={this.handleEditMode}>취소</button> :
                 <button className="btn btn-success" onClick={this.handleEditMode}>수정</button>
             }
-            <button className="btn btn-danger ml-3" onClick={(e) => this.handleDelete(e, this.props.match.params['hero_id'])}>삭제</button>
+            <button className="btn btn-danger ml-3" onClick={(e) => this.handleDelete(e, this.props.match.params['id'])}>삭제</button>
           </div>
         </div>
         {
-          this.state.is_edit ? <Edit hero_id={this.props.match.params['hero_id']}/> : <View hero_id={this.props.match.params['hero_id']} />
+          this.state.is_edit ? <Edit id={this.props.match.params['id']}/> : <View id={this.props.match.params['id']} />
         }
       </>
     );

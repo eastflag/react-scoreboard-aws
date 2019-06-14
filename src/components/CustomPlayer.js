@@ -1,6 +1,6 @@
 import React from 'react';
 import Player from "./Player";
-import classNames from "classnames";
+// import classNames from "classnames";
 import styles from "../pages/scoreboard/Scoreboard.module.css";
 
 export const CustomPlayer = (props) => {

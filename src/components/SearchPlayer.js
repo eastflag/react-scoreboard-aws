@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {searchName, setIsSorted, updateTitle} from "../redux/actions";
+import {searchName, setIsSorted} from "../redux/actions";
 import {connect} from "react-redux";
 
 import styles from '../pages/scoreboard/Scoreboard.module.css';
