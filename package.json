@@ -22,7 +22,9 @@
     "start": "react-scripts start --env.PUBLIC_URL=/public",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "aws-remove": "aws s3 rm s3://eastflag-react-scoreboard/ --recursive",
+    "aws-upload": "aws s3 cp ./build/ s3://eastflag-react-scoreboard/ --recursive"
   },
   "eslintConfig": {
     "extends": "react-app"

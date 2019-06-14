@@ -67,7 +67,7 @@ export class View extends Component {
           <div className="form-group mt-1">
             <label htmlFor="power">Photo:</label>
             {
-              this.state.hero.photo ? <img src={this.state.hero.photo} alt={this.state.hero.name}></img> : ''
+              this.state.hero.photo ? <img src={this.state.hero.photo} alt={this.state.hero.name} style={{maxWidth: '100%'}}></img> : ''
             }
           </div>
           <hr className="my-5" />
