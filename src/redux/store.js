@@ -1,10 +1,7 @@
-import {combineReducers, createStore} from "redux";
-import {playerReducer} from "./reducers/players";
-import {heroReducer} from "./reducers/heroes";
+import {createStore} from "redux";
+import {allReducers} from "./reducers";
 
-const rootReducer = combineReducers({playerReducer, heroReducer});
-
-export const store = createStore(rootReducer,
+export const store = createStore(allReducers,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 console.log(store);
