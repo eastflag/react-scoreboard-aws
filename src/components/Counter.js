@@ -1,28 +1,23 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import {changeScore} from "../redux/actions";
-import {connect} from "react-redux";
+import {useDispatch} from "react-redux";
 
-const Counter = ({index, score, changeScore}) => {
+const Counter = ({index, score}) => {
+  const dispatch = useDispatch();
+
   return (
     <div className="counter">
-      <button className="counter-action decrement" onClick={() => changeScore(index, -1)}> - </button>
+      <button className="counter-action decrement" onClick={() => dispatch(changeScore(index, -1))}> - </button>
       <span className="counter-score">{score}</span>
-      <button className="counter-action increment" onClick={() => changeScore(index, 1)}> + </button>
+      <button className="counter-action increment" onClick={() => dispatch(changeScore(index, 1))}> + </button>
     </div>
   )
 }
 
 Counter.propTypes = {
   index: PropTypes.number,
-  score: PropTypes.number,
-  changeScore: PropTypes.func
+  score: PropTypes.number
 }
 
-let mapDispatchToProps = (dispatch) => {
-  return {
-    changeScore: (index, delta) => dispatch(changeScore(index, delta))
-  }
-}
-
-export default connect(null, mapDispatchToProps)(Counter);
+export default Counter;

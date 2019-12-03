@@ -3,18 +3,29 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.18.0",
+    "bootstrap": "^4.2.1",
+    "classnames": "^2.2.6",
+    "lodash": "^4.17.15",
     "prop-types": "^15.6.2",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
-    "react-redux": "^6.0.0",
-    "react-scripts": "2.1.2",
+    "rc-pagination": "^1.17.8",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-redux": "^7.1.3",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "3.2.0",
+    "reactstrap": "^7.1.0",
     "redux": "^4.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "start": "react-scripts start --env.PUBLIC_URL=/public",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "aws-remove": "aws s3 rm s3://eastflag-react-scoreboard/ --recursive",
+    "aws-upload": "aws s3 cp ./build/ s3://eastflag-react-scoreboard/ --recursive"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -24,5 +35,9 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "gh-pages": "^2.0.1",
+    "node-sass": "^4.11.0"
+  }
 }

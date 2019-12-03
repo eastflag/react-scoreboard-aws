@@ -1,30 +1,23 @@
 import React, {Component} from 'react';
 import {addPlayer} from "../redux/actions";
-import {connect} from "react-redux";
+import {useDispatch} from 'react-redux';
 
-class AddPlayerForm extends Component {
-  textInput = React.createRef();
+const AddPlayerForm = () => {
+  const dispatch = useDispatch();
+  const textInput = React.createRef();
   
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    this.props.addPlayer(this.textInput.current.value);
+    dispatch(addPlayer(textInput.current.value));
     e.currentTarget.reset();
   }
-  
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <input type="text" ref={this.textInput} placeholder="enter a player's name" />
-        <input type="submit" value="Add Player" />
-      </form>
-    )
-  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input type="text" ref={textInput} placeholder="enter a player's name" />
+      <input type="submit" value="Add Player" />
+    </form>
+  )
 }
 
-let mapDispatchToProps = (dispatch) => {
-  return {
-    addPlayer: (name) => dispatch(addPlayer(name))
-  }
-}
-
-export default connect(null, mapDispatchToProps)(AddPlayerForm);
+export default AddPlayerForm;
