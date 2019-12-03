@@ -41,7 +41,7 @@ class Menu extends Component {
                 <NavLink to="/scoreboard" className="nav-link">Scoreboard</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="/todo" className="nav-link">Todo</NavLink>
+                <NavLink to="/product" className="nav-link">Product</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>

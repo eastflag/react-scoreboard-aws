@@ -4,6 +4,7 @@ import Home from "./Home";
 import Scoreboard from "./scoreboard/Scoreboard";
 import Menu from "./Menu";
 import {Index} from "./heroes/Index";
+import FilterableProductTable from "./product/FilterableProductTable";
 
 export class Root extends Component {
   render() {
@@ -16,6 +17,7 @@ export class Root extends Component {
               <Route exact path="/" component={Home}></Route>
               <Route path="/heroes" component={Index}></Route>
               <Route path="/scoreboard" component={Scoreboard}></Route>
+              <Route path="/product" component={FilterableProductTable}></Route>
             </Switch>
           </div>
         </>
