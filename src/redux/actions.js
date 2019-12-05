@@ -1,4 +1,4 @@
-import {ADD_PLAYER, CHANGE_SCORE, REMOVE_PLAYER, UPDATE_TITLE} from "./actionTypes";
+import {ADD_PLAYER, CHANGE_SCORE, REMOVE_PLAYER, SEARCH_KEYWORD, UPDATE_TITLE} from "./actionTypes";
 
 export const updateTitle = (title) => {
   return {
@@ -28,3 +28,8 @@ export const removePlayer = (id) => {
     id
   }
 }
+
+export const searchKeyword = (keyword) => ({
+  type: SEARCH_KEYWORD,
+  keyword
+})
