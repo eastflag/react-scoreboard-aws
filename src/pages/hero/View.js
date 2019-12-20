@@ -1,32 +1,15 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import api from "../../utils/api";
 
-export class View extends Component {
-  constructor(props) {
-    super(props);
+export const View = (props) => {
+  console.log('View: ', props); // { id: "1"}
+  const [hero, setHero] = useState(null);
 
-    this.state = {
-      hero: null
-    }
-    
-    console.log(this.props); // match.params: {id: "1"}
-  }
+  useEffect(() => {
+    getHero(props.id);
+  }, [props.id]);
 
-  componentDidMount() {
-    console.log(this.props);
-    this.getHero(this.props.id);
-  }
-
-  componentWillReceiveProps(newProps) {
-    console.log('componentWillReceiveProps', newProps);
-    this.getHero(newProps['id']);
-  }
-
-/*  componentDidUpdate() {
-    console.log('componentDidUpdate');
-  }*/
-
-  getHero = async (id) => {
+  const getHero = async (id) => {
     let response = await api.get(`/api/user/hero/${id}`);
     console.log(response);
     
@@ -37,43 +20,47 @@ export class View extends Component {
     
     console.log(hero);
 
-    this.setState({hero});
+    setHero(hero);
   }
-  
-  render() {
-    return (
-      this.state.hero ?
-        <div>
-          <div className="form-group mt-1">
-            <label htmlFor="name">Name:</label>
-            <p className="form-control form-control-sm" id="name">{this.state.hero.name}</p>
-          </div>
-          <div className="form-group mt-1">
-            <label htmlFor="email">Email Address:</label>
-            <p className="form-control form-control-sm" id="email">{this.state.hero.email}</p>
-          </div>
-          <div className="form-group mt-1">
-            <label htmlFor="sex">Sex:</label>
-            <p className="form-control form-control-sm" id="sex">{this.state.hero.sex}</p>
-          </div>
-          <div className="form-group mt-1">
-            <label htmlFor="country">Country:</label>
-            <p className="form-control form-control-sm" id="country">{this.state.hero.country}</p>
-          </div>
-          <div className="form-group mt-1">
-            <label htmlFor="power">Power:</label>
-            <p className="form-control form-control-sm" id="power">{this.state.hero.powers.toString()}</p>
-          </div>
-          <div className="form-group mt-1">
-            <label htmlFor="power">Photo:</label>
-            {
-              this.state.hero.photo ? <img src={this.state.hero.photo} alt={this.state.hero.name} style={{maxWidth: '100%'}}></img> : ''
-            }
-          </div>
-          <hr className="my-5" />
-        </div>
-        :
-        ''
-    )
-  }
+
+  return (
+    hero ?
+      <div>
+        <table className="table">
+          <tbody>
+          <tr>
+            <th scope="row">Name</th>
+            <td>{hero.name}</td>
+          </tr>
+          <tr>
+            <th scope="row">Email</th>
+            <td>{hero.email}</td>
+          </tr>
+          <tr>
+            <th scope="row">Sex</th>
+            <td>{hero.sex}</td>
+          </tr>
+          <tr>
+            <th scope="row">Country</th>
+            <td>{hero.country}</td>
+          </tr>
+          <tr>
+            <th scope="row">Power</th>
+            <td>{hero.powers.toString()}</td>
+          </tr>
+          <tr>
+            <th scope="row">Photo</th>
+            <td>
+              {
+                hero.photo ? <img src={hero.photo} alt={hero.name} style={{maxWidth: '100%'}}></img> : ''
+              }
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <hr className="my-5" />
+      </div>
+      :
+      ''
+  )
 }
