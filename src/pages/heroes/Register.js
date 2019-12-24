@@ -5,7 +5,7 @@ export const Register = (props) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [sex, setSex] = useState({
-    male: false,
+    male: true,
     female: false
   });
   const [country, setCountry] = useState('');
@@ -20,7 +20,13 @@ export const Register = (props) => {
   
   const submit = (e) => {
     e.preventDefault();
-    
+    const form = document.getElementById('form');
+    console.log(form.checkValidity());
+    if (!form.checkValidity()) {
+      form.classList.add('was-validated');
+      return;
+    }
+
     const sendForm = { name, email, country, address, photo };
     // sex: 객체 => male or female 의 string 으로 변환
     for (let key in sex) {
@@ -46,7 +52,7 @@ export const Register = (props) => {
         setName('');
         setEmail('');
         setSex({
-          male: false,
+          male: true,
           female: false
         });
         setAddress('');
@@ -61,6 +67,7 @@ export const Register = (props) => {
   }
 
   const handleUpload = (e) => {
+
     e.preventDefault();
     
     // 선택된 화일이 없으면 리턴
@@ -82,17 +89,23 @@ export const Register = (props) => {
     <>
       <h3>Hero Registration</h3>
 
-      <form onSubmit={submit}>
+      <form onSubmit={submit} noValidate id="form">
         <div className="form-group mt-1">
           <label htmlFor="name">Name</label>
           <input type="text" className="form-control" placeholder="Enter Name" id="name"
                  value={name} onChange={(e) => setName(e.target.value)} required minLength="3" maxLength="10" />
+          <div className="invalid-feedback">
+           3 ~ 10 사이의 이름을 입력하세요.
+          </div>
         </div>
 
         <div className="form-group mt-1">
           <label htmlFor="email">Email Address</label>
           <input type="email" className="form-control" placeholder="Enter Email" id="email"
                  value={email} onChange={(e) => setEmail(e.target.value)} required />
+          <div className="invalid-feedback">
+            이메일 형식을 입력하세요.
+          </div>
         </div>
 
         <div className="d-flex flex-column mt-1">
@@ -100,12 +113,12 @@ export const Register = (props) => {
           <div>
             <div className="form-check form-check-inline">
               <input className="form-check-input" type="radio" name="sex" value="male" id="male"
-                     checked={sex.male} onChange={(e) => setSex({male: e.target.checked, female: !e.target.checked})} required />
+                     checked={sex.male} onChange={(e) => setSex({male: e.target.checked, female: !e.target.checked})} />
               <label className="form-check-label" htmlFor="male">남자</label>
             </div>
             <div className="form-check form-check-inline">
               <input className="form-check-input" type="radio" name="sex" value="female" id="female"
-                     checked={sex.female} onChange={(e) => setSex({male: !e.target.checked, female: e.target.checked})} required />
+                     checked={sex.female} onChange={(e) => setSex({male: !e.target.checked, female: e.target.checked})} />
               <label className="form-check-label" htmlFor="female">여자</label>
             </div>
           </div>
@@ -120,6 +133,9 @@ export const Register = (props) => {
             <option value="American">American</option>
             <option value="Korean">Korean</option>
           </select>
+          <div className="invalid-feedback">
+           국가를 선택하세요.
+          </div>
         </div>
 
         <div className="form-group mt-1">
