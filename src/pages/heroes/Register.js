@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 import api from '../../utils/api';
+import classNames from 'classnames';
 
 export const Register = (props) => {
+  let isFormInvalid = false;
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [sex, setSex] = useState({
@@ -23,11 +25,11 @@ export const Register = (props) => {
     const form = document.getElementById('form');
     console.log(form.checkValidity());
     if (!form.checkValidity()) {
-      form.classList.add('was-validated');
+      isFormInvalid = true;
       return;
     }
 
-    const sendForm = { name, email, country, address, photo };
+    const sendForm = { name, email, country, address, photo, powers: [] };
     // sex: 객체 => male or female 의 string 으로 변환
     for (let key in sex) {
       if (sex[key]) {
@@ -35,13 +37,11 @@ export const Register = (props) => {
       }
     }
     // powers: 객체 => 스트링 배열로 변환
-    const powers = [];
     for (let key in powers) {
       if (powers[key]) {
-        powers.push(key);
+        sendForm.powers.push(key);
       }
     }
-    sendForm.powers = powers;
     
     console.log(sendForm);
     
@@ -63,11 +63,11 @@ export const Register = (props) => {
           strength: false
         });
         setPhoto('');
+        isFormInvalid = false;
       });
   }
 
   const handleUpload = (e) => {
-
     e.preventDefault();
     
     // 선택된 화일이 없으면 리턴
@@ -89,7 +89,7 @@ export const Register = (props) => {
     <>
       <h3>Hero Registration</h3>
 
-      <form onSubmit={submit} noValidate id="form">
+      <form onSubmit={submit} noValidate id="form" className={classNames({'was-validated': isFormInvalid})}>
         <div className="form-group mt-1">
           <label htmlFor="name">Name</label>
           <input type="text" className="form-control" placeholder="Enter Name" id="name"
