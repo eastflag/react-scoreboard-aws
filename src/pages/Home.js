@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
+import React from 'react';
 
 function Home() {
   return (
     <div>
-      <div class="m-1">
-        <h4 class="m-1 mb-4">React Tutorial Demo Site</h4>
+      <div className="m-1">
+        <h4 className="m-1 mb-4">React Tutorial Demo Site</h4>
       </div>
 
       <div className="row">

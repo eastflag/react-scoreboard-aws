@@ -6,7 +6,6 @@ import 'rc-pagination/dist/rc-pagination.css';
 import {Route, Switch} from "react-router-dom";
 import Hero from "../hero/Hero";
 import {useSelector} from 'react-redux';
-import {heroReducer} from "../../redux/reducers/heroes";
 
 const Heroes = (props) => {
   console.log(props);

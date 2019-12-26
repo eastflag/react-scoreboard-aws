@@ -3,8 +3,6 @@ import React, {useState, useEffect, useRef} from 'react';
 import styles from '../pages/scoreboard/Scoreboard.module.css';
 
 const Stopwatch = (props) => {
-  let tickRef;
-
   let [isRunning, setIsRunning] = useState(false);
   let [timer, setTimer] = useState(0);
 
@@ -14,13 +12,6 @@ const Stopwatch = (props) => {
       setTimer(timer + 1);
     }
   }, 1000);
-
-  function tick() {
-    console.log('tick isRunning: ', isRunning)
-    if (isRunning) {
-      setTimer(timer + 1);
-    }
-  }
 
   return (
     <div className={styles.stopwatch}>

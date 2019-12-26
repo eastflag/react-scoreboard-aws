@@ -5,11 +5,13 @@ import api from '../../utils/api';
 import {refreshHero} from "../../redux/actions";
 import {useDispatch} from "react-redux";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import {useToasts} from 'react-toast-notifications';
 
 const Hero = (props) => {
   console.log('View: ', props);
   const [is_edit, setIs_edit] = useState(false);
   const dispatch = useDispatch();
+  const {addToast} = useToasts();
 
   const handleEditMode = (e) => {
     setIs_edit(!is_edit);
@@ -27,6 +29,7 @@ const Hero = (props) => {
 
           // publish to parent
           dispatch(refreshHero());
+          addToast('삭제되었습니다.', { appearance: 'success', autoDismiss: true });
         });
   }
 

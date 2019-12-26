@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import api from '../../utils/api';
 import classNames from 'classnames';
+import {useToasts} from "react-toast-notifications";
 
 export const Register = (props) => {
   let isFormInvalid = false;
@@ -19,6 +20,8 @@ export const Register = (props) => {
     strength: false
   });
   const [photo, setPhoto] = useState('');
+  
+  const {addToast} = useToasts();
   
   const submit = (e) => {
     e.preventDefault();
@@ -64,6 +67,8 @@ export const Register = (props) => {
         });
         setPhoto('');
         isFormInvalid = false;
+        // toast
+        addToast('등록되었습니다.', { appearance: 'success', autoDismiss: true });
       });
   }
 

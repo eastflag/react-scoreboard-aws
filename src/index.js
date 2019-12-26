@@ -6,12 +6,15 @@ import * as serviceWorker from './serviceWorker';
 import {Provider} from "react-redux";
 import {store} from "./redux/store";
 import {Root} from "./pages/Root";
+import {ToastProvider} from 'react-toast-notifications';
 
 console.log('process.env: ', process.env, process.env.REACT_APP_IMAGE_HOST);
 
 ReactDOM.render(
   <Provider store={store}>
-    <Root />
+    <ToastProvider placement="top-center">
+      <Root />
+    </ToastProvider>
   </Provider>
   , document.getElementById('root'));
 

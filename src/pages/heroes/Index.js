@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {NavLink, Redirect, Route, Switch} from "react-router-dom";
 import Heroes from "./Heroes";
 import {Register} from "./Register";
