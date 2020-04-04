@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import {useToasts} from "react-toast-notifications";
 
 export const Register = (props) => {
-  let isFormInvalid = false;
+  const [isFormInvalid, setIsFormInvalid] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [sex, setSex] = useState({
@@ -28,7 +28,7 @@ export const Register = (props) => {
     const form = document.getElementById('form');
     console.log(form.checkValidity());
     if (!form.checkValidity()) {
-      isFormInvalid = true;
+      setIsFormInvalid(true);
       return;
     }
 
@@ -66,7 +66,7 @@ export const Register = (props) => {
           strength: false
         });
         setPhoto('');
-        isFormInvalid = false;
+        setIsFormInvalid(true);
         // toast
         addToast('등록되었습니다.', { appearance: 'success', autoDismiss: true });
       });
